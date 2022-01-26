@@ -98,6 +98,7 @@ void vkh_cmd_submit(VkhQueue queue, VkCommandBuffer *pCmdBuff, VkFence fence){
 								 .pWaitDstStageMask = &stageFlags,
 								 .commandBufferCount = 1,
 								 .pCommandBuffers = pCmdBuff};
+	VK_CHECK_RESULT(vkQueueWaitIdle(queue->queue));
 	VK_CHECK_RESULT(vkQueueSubmit(queue->queue, 1, &submit_info, fence));
 }
 void vkh_cmd_submit_with_semaphores(VkhQueue queue, VkCommandBuffer *pCmdBuff, VkSemaphore waitSemaphore,

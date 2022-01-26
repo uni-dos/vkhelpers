@@ -309,6 +309,11 @@ vkh_public
 VkhQueue    vkh_queue_create    (VkhDevice dev, uint32_t familyIndex, uint32_t qIndex);
 vkh_public
 void        vkh_queue_destroy   (VkhQueue queue);
+vkh_public
+VkResult	vkh_queue_wait_idle	(VkhQueue queue);
+//submit creating a signal semaphore to wait for on the next submission
+/*vkh_public
+void		vkh_queue_submit	(VkhQueue queue, VkCommandBuffer *pCmdBuff, VkFence fence, VkSemaphore signal);*/
 //VkhQueue    vkh_queue_find      (VkhDevice dev, VkQueueFlags flags);
 /////////////////////
 

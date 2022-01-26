@@ -41,6 +41,30 @@ VkhQueue vkh_queue_create (VkhDevice dev, uint32_t familyIndex, uint32_t qIndex)
 
 //	  return q;
 //}
+/*void vkh_queue_submit(VkhQueue queue, VkCommandBuffer *pCmdBuff, VkFence fence, VkSemaphore signal){
+	VkPipelineStageFlags stageFlags = VK_PIPELINE_STAGE_ALL_COMMANDS_BIT;
+	VkSubmitInfo submit_info = { .sType = VK_STRUCTURE_TYPE_SUBMIT_INFO,
+								 .pWaitDstStageMask = &stageFlags,
+								 .commandBufferCount = 1,
+								 .pCommandBuffers = pCmdBuff};
+
+	VkSemaphore wait = queue->lastSubmissionSemaphore;
+	queue->lastSubmissionSemaphore = signal;
+
+	if (wait) {
+		submit_info.waitSemaphoreCount = 1;
+		submit_info.pWaitSemaphores = &wait;
+	}
+	if (signal) {
+		submit_info.signalSemaphoreCount = 1;
+		submit_info.pSignalSemaphores = &queue->lastSubmissionSemaphore;
+	}
+
+	VK_CHECK_RESULT(vkQueueSubmit(queue->queue, 1, &submit_info, fence));
+}*/
+VkResult vkh_queue_wait_idle (VkhQueue queue){
+	return vkQueueWaitIdle (queue->queue);
+}
 
 void vkh_queue_destroy (VkhQueue queue){
 	free (queue);

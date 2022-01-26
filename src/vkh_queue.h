@@ -33,6 +33,7 @@ typedef struct _vkh_queue_t{
 	uint32_t		familyIndex;
 	VkQueue			queue;
 	VkQueueFlags	flags;
+	VkSemaphore		lastSubmissionSemaphore;
 }vkh_queue_t;
 
 #ifdef __cplusplus
